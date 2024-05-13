@@ -96,6 +96,7 @@ export const Login = () => {
                                 </FormItem>
                             )}
                         />
+                        {/* animate-spin */}
                         <Button title="Login" className="w-full mt-3">
                             Login
                         </Button>
