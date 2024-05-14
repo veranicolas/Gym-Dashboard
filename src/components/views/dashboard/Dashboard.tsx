@@ -2,8 +2,6 @@
 import dayjs from "dayjs"
 import { Exerice } from "@/types"
 import { ExerciseCard } from "./ExerciseCard"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { AddNewDialog } from "./AddNewDialog"
 
 const exercises:Exerice[] = [
@@ -78,7 +76,7 @@ export const Dashboard = () => {
                     <p className="text-2xl">Frecuent Exercises</p>
                     <AddNewDialog />
                 </div>
-                <div className="grid grid-cols-4 gap-5 px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5 px-6">
                     {
                         exercises.map((item)=>{
                             return <ExerciseCard key={item.id} data={item}/>

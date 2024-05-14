@@ -3,18 +3,27 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { createClient } from "@/config/client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export const AddNewDialog = () => {
+
+    const supabase = createClient()
+    const [open, setOpen] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const FormSchema = z.object({
         name: z.string().min(4,{
             message: "Must have atleast 4 letters"
         }),
         description: z.string(),
-        area: z.string()
+        area: z.string().min(2,{
+            message: "Must pick an area type"
+        })
     })
 
     const form = useForm({
@@ -26,15 +35,33 @@ export const AddNewDialog = () => {
         }
     });
 
-    const onSubmit = async (data:any) =>{
-        console.log(data)
+    const onSubmit = async (exerciseData:{name:string, description:string, area:string}) =>{
+        // console.log(exerciseData)
+        setLoading(true)
+
+        const { error } = await supabase
+            .from('exercises')
+            .insert([
+                {
+                    name:exerciseData.name,
+                    description:exerciseData.description,
+                    area:exerciseData.area
+                }
+            ])
+
+        if(error){
+            setLoading(false)
+        } else {
+            console.log('Se guardo el ejercicio')
+            form.reset()
+            setOpen(false)
+            setLoading(false)
+        }
     }
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button>Add New</Button>
-            </DialogTrigger>
+        <Dialog open={open} onOpenChange={(open)=> setOpen(open)}>
+            <Button onClick={()=> setOpen(true)}>Add New</Button>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle>New Exercise</DialogTitle>
@@ -98,8 +125,13 @@ export const AddNewDialog = () => {
                             />
                             {/* animate-spin */}
                             <DialogFooter className="sm:justify-end mt-4">
-                                <Button variant="default">
-                                    Save
+                                <Button disabled={loading} variant="default">
+                                    {loading ? (
+                                        <>
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                            Please wait
+                                        </>
+                                    ): 'Save'}
                                 </Button>
                             </DialogFooter>
                         </form>
