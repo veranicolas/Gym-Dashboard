@@ -1,15 +1,9 @@
 "use client"
-
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import dayjs, { Dayjs } from "dayjs"
-
-type Exerice = {
-    id:string,
-    created_at:Dayjs,
-    name:string,
-    description:string,
-    area:string
-}
+import dayjs from "dayjs"
+import { Exerice } from "@/types"
+import { ExerciseCard } from "./ExerciseCard"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 const exercises:Exerice[] = [
     {
@@ -74,50 +68,24 @@ export const Dashboard = () => {
 
     return(
         <div className="p-5 flex flex-col gap-3">
-            <div className="p-6 bg-slate-200 rounded-md">
-                <p className="text-2xl">Welcome back!</p>
-            </div>
-            <div className="grid grid-cols-4 gap-5">
-                {
-                    exercises.map((item)=>{
-                        return <ExerciseCard key={item.id} data={item}/>
-                    })
-                }
-            </div>
-        </div>
-    )
-}
-
-type DashboardItemProps = {
-    data:Exerice
-}
-
-const DashboardItem = ({data}:DashboardItemProps) =>{
-    return(
-        <div className="h-52 bg-slate-100 shadow-md rounded-md p-4 flex flex-col justify-around cursor-pointer hover:shadow-xl">
+            <div className="flex flex-col space-y-1.5 px-6">
+                <p className="text-2xl font-semibold">Exercises Dashboard</p>
+                <p className="text-xl font-light">Welcome back!</p>
+            </div>       
             <div>
-                <p className="text-2xl font-bold">{data.name}</p>
-                <p className="text-md">{data.description}</p>
+                <div className="flex flex-row justify-between items-center p-6">
+                    <p className="text-2xl">Frecuent Exercises</p>
+                    <Button>Add New</Button>
+                </div>
+                <div className="grid grid-cols-4 gap-5 px-6">
+                    {
+                        exercises.map((item)=>{
+                            return <ExerciseCard key={item.id} data={item}/>
+                        })
+                    }
+                </div>
             </div>
-            <p className="bg-orange-300 p-2 w-fit text-sm rounded-md">{data.area.toUpperCase()}</p>
-            <p>{data.created_at.toString()}</p>
         </div>
     )
 }
 
-const ExerciseCard = ({data}:DashboardItemProps) =>{
-    return(
-        <Card className="bg-slate-100 shadow-md rounded-md flex flex-col justify-around cursor-pointer hover:shadow-xl">
-            <CardHeader>
-                <CardTitle>{data.name}</CardTitle>
-                <CardDescription>{data.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p className="bg-orange-300 p-2 w-fit text-sm rounded-md">{data.area.toUpperCase()}</p>
-            </CardContent>
-            <CardFooter>
-                <p className="text-sm">{data.created_at.toString()}</p>
-            </CardFooter>
-        </Card>
-    )
-}

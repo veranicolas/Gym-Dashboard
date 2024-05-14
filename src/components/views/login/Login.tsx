@@ -20,7 +20,9 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { createClient } from "@/config/client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -28,6 +30,7 @@ export const Login = () => {
 
     const supabase = createClient()
     const router = useRouter()
+    const [loading, setLoading] = useState<boolean>(false)
 
     const FormSchema = z.object({
         email: z.string().email({
@@ -48,6 +51,8 @@ export const Login = () => {
 
     const onSubmit = async ({email, password}:{email:string, password:string}) =>{
 
+        setLoading(true)
+
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password
@@ -56,6 +61,8 @@ export const Login = () => {
         if(!error){
             console.log(data.user)
             router.push('/dashboard')
+        } else {
+            setLoading(false)
         }
     }
 
@@ -97,14 +104,18 @@ export const Login = () => {
                             )}
                         />
                         {/* animate-spin */}
-                        <Button title="Login" className="w-full mt-3">
-                            Login
+                        <Button disabled={loading} title="Login" className="w-full mt-3">
+                            {loading ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Please wait
+                                </>
+                            ): 'Login'}
                         </Button>
                     </form>
                     <Separator className="my-4"/>
                     <Button className="w-full mt-1">Sign up</Button>
                 </Form>
-                
             </CardContent>
         </Card>
     );

@@ -15,8 +15,6 @@ export const Sidebar = ({data}:SidebarProps) =>{
     const router = useRouter()
     const supabase = createClient()
 
-    
-
     const handleLogout = async () =>{
         const {error} = await supabase.auth.signOut()
         if(!error){
@@ -34,7 +32,7 @@ export const Sidebar = ({data}:SidebarProps) =>{
                     width={150}
                     priority
                 />
-                <h2 className="text-xl">{data?.email}</h2>
+                <h2 className="text-xl">You!</h2>
             </div>
             <Button className="w-full" size={"lg"} onClick={handleLogout}>Logout</Button>
         </div>
