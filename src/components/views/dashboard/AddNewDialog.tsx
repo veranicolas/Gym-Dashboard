@@ -1,0 +1,111 @@
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+export const AddNewDialog = () => {
+
+    const FormSchema = z.object({
+        name: z.string().min(4,{
+            message: "Must have atleast 4 letters"
+        }),
+        description: z.string(),
+        area: z.string()
+    })
+
+    const form = useForm({
+        resolver: zodResolver(FormSchema),
+        defaultValues:{
+            name: "",
+            description: "",
+            area:""
+        }
+    });
+
+    const onSubmit = async (data:any) =>{
+        console.log(data)
+    }
+
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button>Add New</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>New Exercise</DialogTitle>
+                    <DialogDescription>
+                        Add a new exercise to your dashboard
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="w-full flex items-center space-x-2">
+                    <Form {...form}>
+                        <form id="exercise-form" onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-3">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel />
+                                        <FormControl>
+                                            <Input type="text" placeholder="Name" {...field} autoComplete="off"/>
+                                        </FormControl>
+                                        <FormDescription />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="description"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel />
+                                        <FormControl>
+                                            <Input type="text" placeholder="Description" {...field} autoComplete="off"/>
+                                        </FormControl>
+                                        <FormDescription />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="area"
+                                render={({ field }) => (
+                                    <FormItem>
+                                    <FormLabel id="area-label">Area</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select the workout area type" />
+                                        </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent id="area-select-items">
+                                            <SelectItem value="top">Upper</SelectItem>
+                                            <SelectItem value="mid">Middle</SelectItem>
+                                            <SelectItem value="bottom">Lower</SelectItem>
+                                            <SelectItem value="body">Full Body</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            {/* animate-spin */}
+                            <DialogFooter className="sm:justify-end mt-4">
+                                <Button variant="default">
+                                    Save
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </Form>
+                </div>
+            </DialogContent>
+        </Dialog>
+    )
+}

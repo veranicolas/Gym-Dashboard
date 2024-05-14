@@ -4,6 +4,7 @@ import { Exerice } from "@/types"
 import { ExerciseCard } from "./ExerciseCard"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { AddNewDialog } from "./AddNewDialog"
 
 const exercises:Exerice[] = [
     {
@@ -75,7 +76,7 @@ export const Dashboard = () => {
             <div>
                 <div className="flex flex-row justify-between items-center p-6">
                     <p className="text-2xl">Frecuent Exercises</p>
-                    <Button>Add New</Button>
+                    <AddNewDialog />
                 </div>
                 <div className="grid grid-cols-4 gap-5 px-6">
                     {
