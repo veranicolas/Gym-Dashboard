@@ -77,4 +77,24 @@ const config = {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
+// light mode
+// https://www.realtimecolors.com/?colors=02120a-f1fef8-27ec8a-50edd8-48eaef&fonts=Inter-Inter
+// colors: {
+//   'text': '#02120a',
+//   'background': '#f1fef8',
+//   'primary': '#27ec8a',
+//   'secondary': '#50edd8',
+//   'accent': '#48eaef',
+//  },
+
+// dark mode
+// https://www.realtimecolors.com/?colors=edfdf5-010e08-13d875-12af9a-10b1b7&fonts=Inter-Inter
+// colors: {
+//   'text': '#edfdf5',
+//   'background': '#010e08',
+//   'primary': '#13d875',
+//   'secondary': '#12af9a',
+//   'accent': '#10b1b7',
+//  },
+
 export default config

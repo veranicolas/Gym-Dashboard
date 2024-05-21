@@ -1,69 +1,13 @@
 "use client"
-import dayjs from "dayjs"
-import { Exerice } from "@/types"
+import { Exercise } from "@/types"
 import { ExerciseCard } from "./ExerciseCard"
 import { AddNewDialog } from "./AddNewDialog"
 
-const exercises:Exerice[] = [
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f1',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f2',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f3',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f4',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f5',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f6',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f7',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    },
-    {
-        id:'dc97fecd-63fb-4f08-808e-30f5c71c45f8',
-        created_at:dayjs(),
-        name:'Prensa',
-        description:'Maquina de prensa',
-        area:'inferior'
-    }
-]
+type DashboardProps = {
+    data:Exercise[]
+}
 
-export const Dashboard = () => {
+export const Dashboard = ({data}:DashboardProps) => {
 
     return(
         <div className="p-5 flex flex-col gap-3">
@@ -75,10 +19,10 @@ export const Dashboard = () => {
                 <div className="flex flex-row justify-between items-center p-6">
                     <p className="text-2xl">Frecuent Exercises</p>
                     <AddNewDialog />
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5 px-6">
+                </div> 
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 px-6">
                     {
-                        exercises.map((item)=>{
+                        data.map((item)=>{
                             return <ExerciseCard key={item.id} data={item}/>
                         })
                     }

@@ -23,16 +23,19 @@ export const Sidebar = ({data}:SidebarProps) =>{
     }
 
     return(
-        <div className="w-1/5 h-screen bg-slate-200 flex flex-col justify-between items-center p-5">
-            <div className="flex flex-col items-center" style={{gap:40}}>
+        <div className="w-1/5 h-screen bg-slate-200 flex flex-col justify-between items-center p-5 min-w-60">
+            <div className="w-full flex flex-col items-center" style={{gap:20}}>
                 <Image 
                     src={'https://avatar.iran.liara.run/public/19'} 
                     alt="avatar" 
                     height={150} 
                     width={150}
                     priority
+                    className="mb-3"
                 />
                 <h2 className="text-xl">You!</h2>
+                <Button className="w-full" onClick={()=> router.push('/homepage')}>Dashboard</Button>
+                <Button className="w-full" onClick={()=> router.push('/exercises')}>Exercises</Button>
             </div>
             <Button className="w-full" size={"lg"} onClick={handleLogout}>Logout</Button>
         </div>

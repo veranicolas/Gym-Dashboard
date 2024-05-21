@@ -60,7 +60,7 @@ export const Login = () => {
 
         if(!error){
             console.log(data.user)
-            router.push('/dashboard')
+            router.push('/homepage')
         } else {
             setLoading(false)
         }

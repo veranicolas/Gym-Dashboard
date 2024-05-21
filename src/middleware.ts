@@ -7,15 +7,19 @@ export function middleware(request: NextRequest) {
     const cookies = request.cookies.get('sb-lucwnxiimesgkolwwfur-auth-token')
 
     if (request.nextUrl.pathname === '/login' && cookies) {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
+        return NextResponse.redirect(new URL('/homepage', request.url))
     }
 
-    if (request.nextUrl.pathname.startsWith('/dashboard') && !cookies) {
+    if (!request.nextUrl.pathname.startsWith('/login') && !cookies) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
 }
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/dashboard', '/login']
+    matcher: [
+        '/homepage',
+        '/exercises', 
+        '/login'
+    ]
 }

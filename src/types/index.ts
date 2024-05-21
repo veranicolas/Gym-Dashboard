@@ -1,13 +1,13 @@
 import { Dayjs } from "dayjs"
 
-export type Exerice = {
+export type Exercise = {
     id:string,
-    created_at:Dayjs,
+    created_at:string,
     name:string,
     description:string,
     area:string
 }
 
 export type ExerciseCardProps = {
-    data:Exerice
+    data:Exercise
 }
