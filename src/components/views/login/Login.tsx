@@ -67,7 +67,7 @@ export const Login = () => {
     }
 
     return (
-        <Card className="w-2/4">
+        <Card className="w-2/4 max-w-96 min-w-96">
             <CardHeader>
                 <CardTitle>Welcome back</CardTitle>
                 <CardDescription>Login to enter</CardDescription>
