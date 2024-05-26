@@ -1,8 +1,9 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { createClient } from "@/config/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -11,7 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export const AddNewDialog = () => {
+export const AddLogDialog = ({exerciseId, userId}:{exerciseId:string, userId:string}) => {
 
     const supabase = createClient()
     const router = useRouter()
@@ -19,35 +20,42 @@ export const AddNewDialog = () => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const FormSchema = z.object({
-        name: z.string().min(4,{
-            message: "Must have atleast 4 letters"
+        reps: z.coerce.number().max(100, {
+            message:'Must be a realistic value'
         }),
-        description: z.string(),
-        area: z.string().min(2,{
-            message: "Must pick an area type"
+        weight: z.coerce.number().max(1000, {
+            message:'Must be a realistic value'
+        }),
+        own_weight: z.coerce.boolean(),
+        series: z.coerce.number().max(20, {
+            message:'Must be a realistic value'
         })
     })
 
     const form = useForm({
         resolver: zodResolver(FormSchema),
         defaultValues:{
-            name: "",
-            description: "",
-            area:""
+            reps: 0,
+            weight: 0,
+            own_weight:false,
+            series:0
         }
     });
 
-    const onSubmit = async (exerciseData:{name:string, description:string, area:string}) =>{
-        // console.log(exerciseData)
+    const onSubmit = async (exerciseData:{reps:number, weight:number, own_weight:boolean, series:number}) =>{
+        console.log(exerciseData)
         setLoading(true)
 
         const { error } = await supabase
-            .from('exercises')
+            .from('exercise_log')
             .insert([
                 {
-                    name:exerciseData.name,
-                    description:exerciseData.description,
-                    area:exerciseData.area
+                    reps:exerciseData.reps,
+                    weight:exerciseData.weight,
+                    own_weight:exerciseData.own_weight,
+                    series:exerciseData.series,
+                    exercise_id:exerciseId,
+                    user_id:userId
                 }
             ])
 
@@ -67,9 +75,9 @@ export const AddNewDialog = () => {
             <Button onClick={()=> setOpen(true)}>Add New</Button>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
-                    <DialogTitle>New Exercise</DialogTitle>
+                    <DialogTitle>New Exercise Log</DialogTitle>
                     <DialogDescription>
-                        Add a new exercise to your dashboard
+                        Add a new register to your exercise
                     </DialogDescription>
                 </DialogHeader>
                 <div className="w-full flex items-center space-x-2">
@@ -77,12 +85,12 @@ export const AddNewDialog = () => {
                         <form id="exercise-form" onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-3">
                             <FormField
                                 control={form.control}
-                                name="name"
+                                name="reps"
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel />
+                                        <FormLabel>Reps</FormLabel>
                                         <FormControl>
-                                            <Input type="text" placeholder="Name" {...field} autoComplete="off"/>
+                                            <Input type="number" placeholder="Reps" {...field} autoComplete="off"/>
                                         </FormControl>
                                         <FormDescription />
                                         <FormMessage />
@@ -91,12 +99,12 @@ export const AddNewDialog = () => {
                             />
                             <FormField
                                 control={form.control}
-                                name="description"
+                                name="weight"
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel />
+                                        <FormLabel>Weight</FormLabel>
                                         <FormControl>
-                                            <Input type="text" placeholder="Description" {...field} autoComplete="off"/>
+                                            <Input type="number" placeholder="Weight" {...field} autoComplete="off"/>
                                         </FormControl>
                                         <FormDescription />
                                         <FormMessage />
@@ -105,24 +113,37 @@ export const AddNewDialog = () => {
                             />
                             <FormField
                                 control={form.control}
-                                name="area"
+                                name="series"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Series</FormLabel>
+                                        <FormControl>
+                                            <Input type="number" placeholder="Series" {...field} autoComplete="off"/>
+                                        </FormControl>
+                                        <FormDescription />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="own_weight"
                                 render={({ field }) => (
-                                    <FormItem>
-                                    <FormLabel id="area-label">Area</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                                        <div className="space-y-0.5">
+                                            <FormLabel className="text-base">
+                                                Own Weight
+                                            </FormLabel>
+                                            <FormDescription>
+                                                Are you using your body weight for this exercise?
+                                            </FormDescription>
+                                        </div>
                                         <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select the workout area type" />
-                                        </SelectTrigger>
+                                            <Switch
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
                                         </FormControl>
-                                        <SelectContent id="area-select-items">
-                                            <SelectItem value="top">Upper</SelectItem>
-                                            <SelectItem value="mid">Middle</SelectItem>
-                                            <SelectItem value="bottom">Lower</SelectItem>
-                                            <SelectItem value="body">Full Body</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
                                     </FormItem>
                                 )}
                             />

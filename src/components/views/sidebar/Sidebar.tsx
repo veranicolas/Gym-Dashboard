@@ -35,7 +35,7 @@ export const Sidebar = ({data}:SidebarProps) =>{
                 <Button className="w-full" onClick={()=> router.push('/homepage')}>Dashboard</Button>
                 <Button className="w-full" onClick={()=> router.push('/exercises')}>Exercises</Button>
             </div>
-            <Button className="w-full bg-primario-200 hover:bg-primario-300" size={"lg"} onClick={handleLogout}>Logout</Button>
+            <Button className="w-full bg-acento-200 hover:bg-acento-300" size={"lg"} onClick={handleLogout}>Logout</Button>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { Sidebar } from "@/components/views/sidebar/Sidebar";
 import { createClient } from "@/config/server";
+import { StoreWrapper } from "@/store/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default async function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <div className="flex flex-row">
-                    <Sidebar data={data.user}/>
-                    <div className="w-full h-screen bg-slate-50 overflow-auto">
-                        {children}
+                <StoreWrapper>
+                    <div className="flex flex-row">
+                        <Sidebar data={data.user}/>
+                        <div className="w-full h-screen bg-slate-50 overflow-auto">
+                            {children}
+                        </div>
                     </div>
-                </div>
+                </StoreWrapper>
             </body>
         </html>
     );

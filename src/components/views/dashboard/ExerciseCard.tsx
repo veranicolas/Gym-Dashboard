@@ -15,7 +15,7 @@ export const ExerciseCard = ({data}:ExerciseCardProps) =>{
                 <CardDescription>{data.description}</CardDescription>
             </CardHeader>
             <CardContent>
-                <p className="bg-secundario-500 text-primary-foreground p-2 w-fit text-sm rounded-md">{data.area.toUpperCase()}</p>
+                <p className="bg-secundario-300 text-primary-foreground p-2 w-fit text-sm rounded-md">{data.area.toUpperCase()}</p>
             </CardContent>
             <CardFooter>
                 <p className="text-sm" suppressHydrationWarning>{dayjs(data.created_at).toString()}</p>

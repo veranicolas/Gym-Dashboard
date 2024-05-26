@@ -3,13 +3,19 @@ import { Exercise } from "@/types"
 import { ExerciseCard } from "./ExerciseCard"
 import { AddNewDialog } from "./AddNewDialog"
 import { observer } from "mobx-react-lite"
-import { userStore } from '@/store/userStore'
+import { userStore } from '@/store/stores/userStore'
+import { exercisesStore } from "@/store/stores/exercisesStore"
+import { useEffect } from "react"
 
 type DashboardProps = {
     data:Exercise[]
 }
 
 export const Dashboard = observer(({data}:DashboardProps) => {
+
+    useEffect(()=>{
+        exercisesStore.setExercises(data)
+    },[data])
 
     return(
         <div className="p-5 flex flex-col gap-3">

@@ -1,12 +1,19 @@
-import { Dashboard } from "@/components/views/dashboard/Dashboard";
-import { createClient } from "@/config/server";
 import { Exercise } from "@/types";
+import { createClient } from "@/config/server";
+import Exercises from "@/components/views/exercises/Exercises";
 
-const Exercises = async () =>{
+const ExercisesPage = async () => {
 
-    return(
-        <div>hola si</div>
+    const supabase = createClient()
+
+    const { data: exercises , error } = await supabase
+        .from('exercises')
+        .select('*')
+
+
+    return (
+        <Exercises data={error ? [] : exercises as Exercise[]}/>
     )
 }
 
-export default Exercises
+export default ExercisesPage
