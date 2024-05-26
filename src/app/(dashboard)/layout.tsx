@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { Sidebar } from "@/components/views/sidebar/Sidebar";
-import { createClient } from "@/config/server";
 import { StoreWrapper } from "@/store/provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,16 +17,12 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
 
-    const supabase = createClient()
-
-    const { data } = await supabase.auth.getUser()
-
     return (
         <html lang="en">
             <body className={inter.className}>
                 <StoreWrapper>
                     <div className="flex flex-row">
-                        <Sidebar data={data.user}/>
+                        <Sidebar />
                         <div className="w-full h-screen bg-slate-50 overflow-auto">
                             {children}
                         </div>

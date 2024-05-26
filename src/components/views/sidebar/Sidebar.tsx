@@ -1,15 +1,10 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/config/client"
-import { User } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 
-type SidebarProps = {
-    data:User | null
-}
-
-export const Sidebar = ({data}:SidebarProps) =>{
+export const Sidebar = () =>{
 
     const router = useRouter()
     const supabase = createClient()
