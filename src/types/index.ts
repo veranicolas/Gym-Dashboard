@@ -1,4 +1,3 @@
-import { Dayjs } from "dayjs"
 
 export type Exercise = {
     id:string,
