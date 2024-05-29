@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { Sidebar } from "@/components/views/sidebar/Sidebar";
 import { StoreWrapper } from "@/store/provider";
+import { Navbar } from "@/components/views/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
                     <div className="flex flex-row">
                         <Sidebar />
                         <div className="w-full h-screen bg-slate-50 overflow-auto">
+                            <Navbar />
                             {children}
                         </div>
                     </div>
