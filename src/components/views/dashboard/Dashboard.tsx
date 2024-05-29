@@ -18,7 +18,7 @@ export const Dashboard = observer(({data}:DashboardProps) => {
     },[data])
 
     return(
-        <div className="p-5 flex flex-col gap-3">
+        <div className="sm:p-5 flex flex-col gap-3">
             <div className="flex flex-col space-y-1.5 px-6">
                 <p className="text-2xl font-semibold">Exercises Dashboard</p>
                 <p className="text-xl font-light">Welcome back, {userStore.name}!</p>

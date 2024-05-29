@@ -1,0 +1,30 @@
+{
+  "name": "Gym Dashboard",
+  "short_name": "GYMDASH",
+  "icons": [
+    {
+      "src": "ic_launcher-web.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "android/mipmap-xxhdpi/ic_launcher.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "android/mipmap-xxxhdpi/ic_launcher.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "prefer_related_applications":"false"
+}

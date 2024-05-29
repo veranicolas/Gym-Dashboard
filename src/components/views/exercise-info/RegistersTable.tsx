@@ -46,7 +46,7 @@ const RegisterItem = ({data}:{data:Register}) =>{
                     <TableCell className="text-center">YES</TableCell>
                 ) : <TableCell className="text-center">{data.weight}</TableCell>
             }
-            <TableCell className="text-center" suppressHydrationWarning>{dayjs(data.created_at).format('DD-MM-YYYY hh:mm a')}</TableCell>
+            <TableCell className="text-center text-nowrap" suppressHydrationWarning>{dayjs(data.created_at).format('DD-MM-YYYY hh:mm a')}</TableCell>
         </TableRow>
     )
 }
