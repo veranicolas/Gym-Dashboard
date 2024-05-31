@@ -27,7 +27,7 @@ export const Navbar = () =>{
     }
     
     return(
-        <div className="block w-full h-20 shadow-lg mb-8 bg-primario-950 sm:hidden flex-col justify-between items-center p-5 min-w-60 box-border">
+        <div className="block w-full h-16 shadow-lg mb-8 bg-acento-950 sm:hidden flex-col justify-between items-center p-3 min-w-60 box-border">
             <Sheet open={open} onOpenChange={(open)=> setOpen(open)}>
                 <SheetTrigger asChild>
                     <Button variant="ghost" size="icon">
@@ -36,7 +36,7 @@ export const Navbar = () =>{
                 </SheetTrigger>
                 <SheetContent side={"left"} className="w-[350px] sm:w-[540px]">
                     <div className="h-full flex flex-col justify-between items-center">
-                        <div className="w-full flex flex-col items-center" style={{gap:5}}>
+                        <div className="w-full flex flex-col items-center" style={{gap:25}}>
                             <Image 
                                 src={'https://avatar.iran.liara.run/public/19'} 
                                 alt="avatar" 

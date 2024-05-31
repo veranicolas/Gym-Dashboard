@@ -11,13 +11,13 @@ const ExerciseTable = ({data}:ExerciseTableProps) =>{
 
     return (
         <div>
-            <Table className="bg-secundario-950 px-6 mt-3 overflow-auto">
+            <Table className="px-6 mt-3 overflow-auto rounded-sm shadow-md">
                 <TableHeader>
-                    <TableRow className="bg-secundario-400 hover:bg-secundario-400">
-                        <TableHead className="text-primary-foreground">Name</TableHead>
-                        <TableHead className="text-primary-foreground">Description</TableHead>
-                        <TableHead className="text-center text-primary-foreground">Area</TableHead>
-                        <TableHead className="text-center text-primary-foreground">Created At</TableHead>
+                    <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Description</TableHead>
+                        <TableHead className="text-center">Area</TableHead>
+                        <TableHead className="text-center">Created At</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
