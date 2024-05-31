@@ -1,6 +1,6 @@
 {
   "name": "Gym Dashboard",
-  "short_name": "GYMDASH",
+  "short_name": "Gym Dashboard",
   "icons": [
     {
       "src": "ic_launcher-web.png",
@@ -26,5 +26,5 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "prefer_related_applications":"false"
+  "prefer_related_applications":false
 }
