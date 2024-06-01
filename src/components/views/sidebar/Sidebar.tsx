@@ -1,22 +1,15 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { createClient } from "@/config/client"
 import { useRouter } from "next/navigation"
 import { Dumbbell, LayoutDashboard, User } from "lucide-react"
 import Image from "next/image"
+import { useCurrentPath } from "@/hooks/useCurrentPath"
+import { handleLogout } from "@/lib/auth"
 
 export const Sidebar = () =>{
 
+    const [currentPath] = useCurrentPath()
     const router = useRouter()
-    const supabase = createClient()
-    
-
-    const handleLogout = async () =>{
-        const {error} = await supabase.auth.signOut()
-        if(!error){
-            router.push('/login')
-        }
-    }
 
     return(
         <div className="hidden w-1/5 h-screen bg-fondo-900/10 sm:flex flex-col justify-between items-center p-5 min-w-60">
@@ -29,17 +22,22 @@ export const Sidebar = () =>{
                     priority
                     className="mb-3"
                 />
-                <Button className={`w-full justify-start bg-secundario-900/25 text-texto-50/100 hover:text-texto-950`} onClick={()=> router.push('/homepage')}>
+                <Button className={`w-full justify-start ${currentPath === 'homepage' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'}  hover:text-texto-950`} onClick={()=> router.push('/homepage')}>
                     <LayoutDashboard className="mr-6"/>Dashboard
                 </Button>
-                <Button className={`w-full justify-start bg-secundario-900/25 text-texto-50/100 hover:text-texto-950`} onClick={()=> router.push('/exercises')}>
+                <Button className={`w-full justify-start ${currentPath === 'exercises' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/exercises')}>
                     <Dumbbell className="mr-6"/>Exercises
                 </Button>
-                <Button className={`w-full justify-start bg-secundario-900/25 text-texto-50/100 hover:text-texto-950`}>
+                <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`}>
                     <User className="mr-6"/>Profile
                 </Button>
             </div>
-            <Button className="w-full bg-acento-200 hover:bg-acento-300" size={"lg"} onClick={handleLogout}>Logout</Button>
+            <Button className="w-full bg-acento-200 hover:bg-acento-300" size={"lg"} onClick={async()=>{
+                const response = await handleLogout()
+                if(response){
+                    router.push('/login')
+                }
+            }}>Logout</Button>
         </div>
     )
 }
