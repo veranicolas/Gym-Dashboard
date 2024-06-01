@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Image from 'next/image'
-import { Menu } from "lucide-react"
+import { Dumbbell, LayoutDashboard, Menu, User } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/config/client"
 
@@ -27,7 +27,7 @@ export const Navbar = () =>{
     }
     
     return(
-        <div className="block w-full h-16 shadow-lg mb-8 bg-acento-950 sm:hidden flex-col justify-between items-center p-3 min-w-60 box-border">
+        <div className="block w-full h-16 shadow-lg mb-8 bg-acento-950/5 sm:hidden flex-col justify-between items-center p-3 min-w-60 box-border">
             <Sheet open={open} onOpenChange={(open)=> setOpen(open)}>
                 <SheetTrigger asChild>
                     <Button variant="ghost" size="icon">
@@ -36,7 +36,7 @@ export const Navbar = () =>{
                 </SheetTrigger>
                 <SheetContent side={"left"} className="w-[350px] sm:w-[540px]">
                     <div className="h-full flex flex-col justify-between items-center">
-                        <div className="w-full flex flex-col items-center" style={{gap:25}}>
+                        <div className="w-full flex flex-col items-center" style={{gap:15}}>
                             <Image 
                                 src={'https://avatar.iran.liara.run/public/19'} 
                                 alt="avatar" 
@@ -45,11 +45,17 @@ export const Navbar = () =>{
                                 priority
                                 className="mb-10"
                             />
-                            <Button className={`w-full justify-start hover:text-texto-950`} onClick={()=> handleNavigate('/homepage')}>Dashboard</Button>
-                            <Button className={`w-full justify-start hover:text-texto-950`} onClick={()=> handleNavigate('/exercises')}>Exercises</Button>
-                            <Button className={`w-full justify-start hover:text-texto-950`}>Profile</Button>
+                            <Button className={`w-full justify-start hover:text-texto-950 text-md p-6`} onClick={()=> handleNavigate('/homepage')}>
+                                <LayoutDashboard className="mr-6"/>Dashboard
+                            </Button>
+                            <Button className={`w-full justify-start hover:text-texto-950 text-md p-6`} onClick={()=> handleNavigate('/exercises')}>
+                                <Dumbbell className="mr-6"/>Exercises
+                            </Button>
+                            <Button className={`w-full justify-start hover:text-texto-950 text-md p-6`}>
+                                <User className="mr-6"/>Profile
+                            </Button>
                         </div>
-                        <Button className="w-full bg-acento-200 hover:bg-acento-300" size={"lg"} onClick={handleLogout}>Logout</Button>
+                        <Button className="w-full bg-acento-200 hover:bg-acento-300 text-md p-6" size={"lg"} onClick={handleLogout}>Logout</Button>
                     </div>
                 </SheetContent>
             </Sheet>

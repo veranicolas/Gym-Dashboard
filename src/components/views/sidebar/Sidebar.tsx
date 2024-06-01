@@ -2,8 +2,8 @@
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/config/client"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
 import { Dumbbell, LayoutDashboard, User } from "lucide-react"
+import Image from "next/image"
 
 export const Sidebar = () =>{
 
@@ -17,18 +17,6 @@ export const Sidebar = () =>{
             router.push('/login')
         }
     }
-
-    // useEffect(() => {
-    //     if(pathname.includes('homepage')){
-    //         setCurrentPath('homepage')
-    //     }
-    //     if(pathname.includes('exercises')){
-    //         setCurrentPath('exercises')
-    //     }
-    //     if(pathname.includes('profile')){
-    //         setCurrentPath('profile')
-    //     }
-    // }, [pathname]);
 
     return(
         <div className="hidden w-1/5 h-screen bg-fondo-900/10 sm:flex flex-col justify-between items-center p-5 min-w-60">

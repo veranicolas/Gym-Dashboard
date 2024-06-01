@@ -9,7 +9,7 @@ export const ExerciseCard = ({data}:ExerciseCardProps) =>{
     const router = useRouter()
 
     return(
-        <Card className="bg-acento-950/10 shadow-md rounded-md flex flex-col justify-around cursor-pointer hover:shadow-xl" onClick={()=> router.push(`/exercises/${data.id}`)}>
+        <Card className="bg-[white] shadow-md rounded-md flex flex-col justify-around cursor-pointer hover:shadow-xl" onClick={()=> router.push(`/exercises/${data.id}`)}>
             <CardHeader>
                 <CardTitle>{data.name}</CardTitle>
                 <CardDescription>{data.description}</CardDescription>
