@@ -29,9 +29,9 @@ export const Dashboard = observer(({data}:DashboardProps) => {
     data.splice(2)
 
     return(
-        <div className="px-5 sm:p-5 columns-1 lg:columns-2 space-y-3.5 bg-fondo-950/45 h-full">
+        <div className="py-5 px-5 sm:p-5 columns-1 lg:columns-2 space-y-3.5 bg-fondo-950/45 h-full">
             {/* message */}
-            <div className="break-inside-avoid flex flex-col p-6 bg-[white] rounded-md">
+            <div className="h-40 break-inside-avoid flex flex-col justify-center p-6 bg-[white] rounded-md">
                 <p className="text-2xl font-semibold">Exercises Dashboard</p>
                 <p className="text-xl font-light">Welcome back, {userStore.name}!</p>
             </div>

@@ -12,7 +12,7 @@ const Exercises = observer(({data}:{data:Exercise[]}) => {
     },[data])
 
     return (
-        <div className="sm:p-5">
+        <div className="py-5 sm:px-5">
             <div className="flex flex-col space-y-1.5 px-6 gap-2">
                 <p className="text-2xl font-semibold">Exercises Table</p>
                 <p className="text-xl font-light">Search them here!</p>

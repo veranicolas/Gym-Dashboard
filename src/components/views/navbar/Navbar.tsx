@@ -20,7 +20,7 @@ export const Navbar = () =>{
     }
 
     return(
-        <div className="block w-full h-16 shadow-lg mb-8 bg-acento-950/5 sm:hidden flex-col justify-between items-center p-3 min-w-60 box-border">
+        <div className="block w-full h-16 shadow-lg bg-acento-950/5 sm:hidden flex-col justify-between items-center p-3 min-w-60 box-border">
             <Sheet open={open} onOpenChange={(open)=> setOpen(open)}>
                 <SheetTrigger asChild>
                     <Button variant="ghost" size="icon">
@@ -44,7 +44,7 @@ export const Navbar = () =>{
                             <Button className={`w-full justify-start ${currentPath === 'exercises' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'}  hover:text-texto-950 text-md p-6`} onClick={()=> handleNavigate('/exercises')}>
                                 <Dumbbell className="mr-6"/>Exercises
                             </Button>
-                            <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'}  hover:text-texto-950 text-md p-6`} onClick={()=> router.push('/profile')}>
+                            <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'}  hover:text-texto-950 text-md p-6`} onClick={()=> handleNavigate('/profile')}>
                                 <User className="mr-6"/>Profile
                             </Button>
                         </div>
