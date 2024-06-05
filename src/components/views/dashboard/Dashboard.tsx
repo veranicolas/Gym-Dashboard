@@ -20,7 +20,7 @@ export const Dashboard = observer(({data}:DashboardProps) => {
         exercisesStore.setExercises(data)
 
         const timePassing = setInterval(()=>{
-            setDate(dayjs().toString())
+            setDate(dayjs().format('dddd HH:mm:ss DD/MM/YYYY ').toString())
         },1000)
 
         return () => clearInterval(timePassing)
@@ -29,15 +29,20 @@ export const Dashboard = observer(({data}:DashboardProps) => {
     data.splice(2)
 
     return(
-        <div className="px-5 sm:p-5 grid grid-cols-1 lg:grid-cols-2 flex-wrap gap-3 ">
-            <div className="flex flex-col space-y-1.5 p-6 bg-fondo-950/45 rounded-md">
+        <div className="px-5 sm:p-5 columns-1 lg:columns-2 space-y-3.5 bg-fondo-950/45 h-full">
+            {/* message */}
+            <div className="break-inside-avoid flex flex-col p-6 bg-[white] rounded-md">
                 <p className="text-2xl font-semibold">Exercises Dashboard</p>
                 <p className="text-xl font-light">Welcome back, {userStore.name}!</p>
             </div>
-            <div suppressHydrationWarning className="bg-fondo-950/45 p-6 rounded-md">
-                <p className="text-2xl">Today is {date}</p>
+
+            {/* clock */}
+            <div suppressHydrationWarning className="break-inside-avoid bg-acento-100 p-6 rounded-md">
+                <p className="text-2xl text-[white]">Today is {date}</p>
             </div>
-            <div className="bg-fondo-950/45 rounded-md pb-10">
+
+            {/* frecuent exercises */}
+            <div className="bg-[white] rounded-md pb-10 break-inside-avoid">
                 <div className="flex flex-row justify-between items-center p-6">
                     <p className="text-2xl">Frecuent Exercises</p>
                     <AddNewDialog />

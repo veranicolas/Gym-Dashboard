@@ -28,7 +28,7 @@ export const Sidebar = () =>{
                 <Button className={`w-full justify-start ${currentPath === 'exercises' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/exercises')}>
                     <Dumbbell className="mr-6"/>Exercises
                 </Button>
-                <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`}>
+                <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/profile')}>
                     <User className="mr-6"/>Profile
                 </Button>
             </div>
