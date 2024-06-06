@@ -16,3 +16,8 @@
     - Must be able to enter personal information
     - Upload avatar picture
     - Make the login more appealing
+
+## To Fix
+
+- Validation on inputs.
+    - Numbers can't be negatives

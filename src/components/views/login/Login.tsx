@@ -1,13 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Form,
   FormControl,
   FormDescription,
@@ -67,56 +60,52 @@ export const Login = () => {
     }
 
     return (
-        <Card className="w-2/4 max-w-96 min-w-96">
-            <CardHeader>
-                <CardTitle>Welcome back</CardTitle>
-                <CardDescription>Login to enter</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-1">
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel />
-                                    <FormControl>
-                                        <Input type="email" placeholder="Email" {...field} autoComplete="email"/>
-                                    </FormControl>
-                                    <FormDescription />
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel />
-                                    <FormControl>
-                                        <Input type="password" placeholder="Password" {...field} />
-                                    </FormControl>
-                                    <FormDescription />
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        {/* animate-spin */}
-                        <Button disabled={loading} title="Login" className="w-full mt-3">
-                            {loading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Please wait
-                                </>
-                            ): 'Login'}
-                        </Button>
-                    </form>
-                    <Separator className="my-4"/>
-                    <Button className="w-full mt-1">Sign up</Button>
-                </Form>
-            </CardContent>
-        </Card>
+        <Form {...form}>
+            <div className="flex flex-col space-y-1.5 gap-2 mb-6">
+                <p className="text-4xl font-semibold">Welcome back!</p>
+                <p className="text-2xl font-light">Login to enter</p>
+            </div>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-1">
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel />
+                            <FormControl>
+                                <Input type="email" placeholder="Email" {...field} autoComplete="email"/>
+                            </FormControl>
+                            <FormDescription />
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel />
+                            <FormControl>
+                                <Input type="password" placeholder="Password" {...field} />
+                            </FormControl>
+                            <FormDescription />
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                {/* animate-spin */}
+                <Button disabled={loading} title="Login" className="w-full mt-3">
+                    {loading ? (
+                        <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Please wait
+                        </>
+                    ): 'Login'}
+                </Button>
+            </form>
+            <Separator className="my-4"/>
+            <Button className="w-full mt-1">Sign up</Button>
+        </Form>
     );
 };
