@@ -16,6 +16,7 @@
     - Must be able to enter personal information
     - Upload avatar picture
     - Make the login more appealing
+        - Change the background image for something else maybe?
 
 ## To Fix
 
