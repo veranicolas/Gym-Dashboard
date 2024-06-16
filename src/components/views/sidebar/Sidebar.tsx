@@ -14,6 +14,9 @@ export const Sidebar = () =>{
     return(
         <div className="hidden w-1/5 h-screen bg-fondo-900/10 sm:flex flex-col justify-between items-center p-5 min-w-60">
             <div className="w-full flex flex-col items-center" style={{gap:15}}>
+
+                {/* remake this sidebar following this design https://www.hyperui.dev/components/application-ui/side-menu*/}
+
                 <Image 
                     src={'https://avatar.iran.liara.run/public/19'} 
                     alt="avatar" 

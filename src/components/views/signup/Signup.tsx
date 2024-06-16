@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Signup() {
 
@@ -13,9 +14,11 @@ export default function Signup() {
         <section className="bg-white">
             <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
                 <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
-                    <img
+                    <Image
                         alt=""
                         src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                        fill
+                        style={{height:'100%', width:'100%'}}
                         className="absolute inset-0 h-full w-full object-cover"
                     />
                 </aside>
@@ -103,7 +106,7 @@ export default function Signup() {
 
                             <div className="col-span-6">
                                 <p className="text-sm text-gray-500">
-                                    By creating an account, you agree with the fact that you're really cool! 😎🤙
+                                    By creating an account, you agree with the fact that you&apos;re really cool! 😎🤙
                                 </p>
                             </div>
 
