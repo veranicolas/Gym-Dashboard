@@ -22,13 +22,13 @@ export const Sidebar = () =>{
                     priority
                     className="mb-3"
                 />
-                <Button className={`w-full justify-start ${currentPath === 'homepage' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'}  hover:text-texto-950`} onClick={()=> router.push('/homepage')}>
+                <Button className={`w-full justify-start ${currentPath === 'homepage' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/0 text-texto-50/100'}  hover:text-texto-950`} onClick={()=> router.push('/homepage')}>
                     <LayoutDashboard className="mr-6"/>Dashboard
                 </Button>
-                <Button className={`w-full justify-start ${currentPath === 'exercises' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/exercises')}>
+                <Button className={`w-full justify-start ${currentPath === 'exercises' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/0 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/exercises')}>
                     <Dumbbell className="mr-6"/>Exercises
                 </Button>
-                <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/25 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/profile')}>
+                <Button className={`w-full justify-start ${currentPath === 'profile' ? 'bg-acento-300 text-texto-950' : 'bg-secundario-900/0 text-texto-50/100'} hover:text-texto-950`} onClick={()=> router.push('/profile')}>
                     <User className="mr-6"/>Profile
                 </Button>
             </div>
